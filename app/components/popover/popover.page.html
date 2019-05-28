@@ -1,0 +1,20 @@
+<ion-content>
+
+  <ion-grid class="padding">
+
+    <ion-row >
+      <ion-col>
+        <ion-item [routerLink]="['/account']" (click)="closePopover()"> Account </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col text-center>
+          <ion-button size="small" *ngIf="afAuth.auth.currentUser" (click)="signOut()"> Sign Out</ion-button> 
+      </ion-col>
+    </ion-row>
+    
+  </ion-grid>
+
+  
+</ion-content>
