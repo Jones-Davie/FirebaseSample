@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>recovery</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-grid style="height: 100%" *ngIf="!recovered">
+          <ion-row justify-content-center align-items-center style="height: 80%">
+            <div>
+              <form class="form" [formGroup]="validation_form" (ngSubmit)="recoverPassword(recover_email)">
+            
+                <ion-item>
+                  <ion-label  position="floating" color="primary">Email</ion-label>
+                  <ion-input type="email" formControlName="email" [(ngModel)]='recover_email' ></ion-input>
+                </ion-item>
+                <div class="validation-errors">
+                  <ng-container *ngFor="let validation of validation_messages.email">
+                    <div class="error-message" *ngIf="validation_form.get('email').hasError(validation.type) && (validation_form.get('email').dirty || validation_form.get('email').touched)">
+                      {{ validation.message }}
+                    </div>
+                  </ng-container>
+                </div>
+            
+                
+                <ion-button  class="submit-btn" type="submit"  [disabled]="!validation_form.valid">Recover Password</ion-button>
+            
+                <label class="error-message">{{errorMessage}}</label>
+              </form>
+            </div>
+          </ion-row>
+  </ion-grid>
+
+  <ion-grid style="height: 100%" *ngIf="recovered">
+      <ion-row justify-content-center align-items-center style="height: 80%">
+        <div>
+            <p>
+                <label class="success-message"> {{ succesMessage }}  </label>
+                
+            </p>
+        </div>
+      </ion-row>
+</ion-grid>
+
+</ion-content>
